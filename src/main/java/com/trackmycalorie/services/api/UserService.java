@@ -16,7 +16,5 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    void createAdmin(User user);
-
     void createManager(RegisterUserDto userDto);
 }

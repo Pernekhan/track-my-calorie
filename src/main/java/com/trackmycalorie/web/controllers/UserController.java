@@ -17,6 +17,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    public String testApi() throws Exception {
+        return "test api works";
+    }
+
     @RequestMapping(value = "users/self", method = RequestMethod.GET)
     @ResponseBody
     public User getTokenOwner(HttpServletRequest request) throws Exception {

@@ -34,6 +34,8 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(Role.ROLE_USER);
+        user.setFullName(userDto.getFullName());
+        user.setCaloriesDaily(userDto.getCaloriesDaily());
         userDao.create(user);
     }
 
@@ -60,18 +62,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createAdmin(User user) {
-        userDao.create(user);
-    }
-
-    @Override
     public void createManager(RegisterUserDto userDto) {
         User user = new User();
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setRole(Role.ROLE_MANAGER);
-        user.setFullName(userDto.getFullname());
+        user.setFullName(userDto.getFullName());
         userDao.create(user);
     }
 }
