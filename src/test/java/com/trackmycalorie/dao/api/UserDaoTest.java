@@ -36,4 +36,9 @@ public class UserDaoTest {
         assertEquals(user.getId(), userDao.findByUsername("Lorem").getId());
     }
 
+    @Test
+    public void justTest(){
+
+    }
+
 }

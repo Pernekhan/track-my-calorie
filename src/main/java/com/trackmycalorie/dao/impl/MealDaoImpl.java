@@ -45,10 +45,14 @@ public class MealDaoImpl extends BaseDaoImpl<Meal, Long> implements MealDao {
         query.setParameter("toTime", String.format("%02d:%02d", toDate.getHours(), toDate.getMinutes()));
         List<DateCaloriesDto> result = new ArrayList<>();
         List<Object> iter = query.list();
-        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
         for (Object obj: iter){
             Object entry [] = (Object[]) obj;
-            Date date = format.parse((String)entry[0]);
+            String rawDate = (String)entry[0];
+            String [] parts = rawDate.split("-");
+            int year = Integer.parseInt(parts[2]);
+            int month = Integer.parseInt(parts[1]);
+            int dayOfMonth = Integer.parseInt(parts[0]);
+            Date date = new Date(year - 1900, month - 1, dayOfMonth);
             Long calories = (Long) entry[1];
             result.add(new DateCaloriesDto(date, calories));
         }

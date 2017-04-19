@@ -1,6 +1,8 @@
 package com.trackmycalorie.web.controllers;
 
+import com.trackmycalorie.dao.entity.Role;
 import com.trackmycalorie.dao.entity.User;
+import com.trackmycalorie.dao.impl.UserDaoImpl;
 import com.trackmycalorie.services.api.UserService;
 import com.trackmycalorie.services.dto.UserDto;
 import com.trackmycalorie.web.security.jwt.JwtTokenUtils;
@@ -31,7 +33,7 @@ public class UserController {
         return userService.findUser(user.getId());
     }
 
-    @RequestMapping(value = "users/self", method = RequestMethod.PATCH)
+    @RequestMapping(value = "users/self", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity updateUser(HttpServletRequest request, @RequestBody UserDto userDto) throws Exception {
         String token = request.getHeader(JwtTokenUtils.HEADER_STRING);

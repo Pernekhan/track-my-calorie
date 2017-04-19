@@ -71,4 +71,9 @@ public class UserServiceImpl implements UserService {
         user.setFullName(userDto.getFullName());
         userDao.create(user);
     }
+
+    @Override
+    public void createAdmin(User user) {
+        userDao.create(user);
+    }
 }

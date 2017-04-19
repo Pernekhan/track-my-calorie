@@ -1,5 +1,9 @@
 package com.trackmycalorie.web.controllers;
 
+import com.trackmycalorie.dao.api.UserDao;
+import com.trackmycalorie.dao.entity.Role;
+import com.trackmycalorie.dao.entity.User;
+import com.trackmycalorie.dao.impl.UserDaoImpl;
 import com.trackmycalorie.services.api.UserService;
 import com.trackmycalorie.services.dto.RegisterUserDto;
 import com.trackmycalorie.web.security.jwt.AccountCredentials;

@@ -90,7 +90,7 @@ public class MealController {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "users/self/meals/{mealId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "users/self/meals/{mealId}", method = RequestMethod.PUT)
     @ResponseBody
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity updateMeal(
@@ -139,7 +139,7 @@ public class MealController {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "meals/{mealId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "meals/{mealId}", method = RequestMethod.PUT)
     @ResponseBody
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteMeal(@PathVariable("mealId") Long mealId, @RequestBody MealDto mealDto) throws Exception {

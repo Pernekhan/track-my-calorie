@@ -31,7 +31,7 @@ public class ManagerController {
         return userService.findUser(userId);
     }
 
-    @RequestMapping(value = "users/{userId}", method = RequestMethod.PATCH)
+    @RequestMapping(value = "users/{userId}", method = RequestMethod.PUT)
     @ResponseBody
     @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity updateUser(@PathVariable("userId") Long userId, @RequestBody UserDto userDto) throws Exception {
