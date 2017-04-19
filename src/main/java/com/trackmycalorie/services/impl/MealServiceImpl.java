@@ -4,11 +4,13 @@ import com.trackmycalorie.dao.entity.Meal;
 import com.trackmycalorie.dao.entity.User;
 import com.trackmycalorie.dao.impl.MealDaoImpl;
 import com.trackmycalorie.services.api.MealService;
+import com.trackmycalorie.services.dto.DateCaloriesDto;
 import com.trackmycalorie.services.dto.MealDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -60,5 +62,15 @@ public class MealServiceImpl implements MealService {
         if (mealDto.getDescription() != null)
             meal.setDescription(mealDto.getDescription());
         mealDao.save(meal);
+    }
+
+    @Override
+    public List<Meal> filterByDateAndTime(Long userId, Date fromDate, Date toDate) {
+        return mealDao.filterByDateAndTime(userId, fromDate, toDate);
+    }
+
+    @Override
+    public List<DateCaloriesDto> getSumByDateAndTime(Long id, Date fromDate, Date toDate) throws ParseException {
+        return mealDao.getSumByDateAndTime(id, fromDate, toDate);
     }
 }

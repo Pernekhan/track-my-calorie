@@ -4,6 +4,7 @@ import com.trackmycalorie.dao.entity.Meal;
 import com.trackmycalorie.dao.entity.User;
 import com.trackmycalorie.services.api.MealService;
 import com.trackmycalorie.services.api.UserService;
+import com.trackmycalorie.services.dto.DateCaloriesDto;
 import com.trackmycalorie.services.dto.MealDto;
 import com.trackmycalorie.web.security.jwt.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,6 +34,27 @@ public class MealController {
         User user = JwtTokenUtils.parseToken(request);
         return mealService.getAll(user.getId());
     }
+
+    @RequestMapping(value = "filter/users/self/meals", method = RequestMethod.GET)
+    @ResponseBody
+    @PreAuthorize("hasRole('USER')")
+    public List<Meal> filterByDateAndTime(
+            HttpServletRequest request, @RequestParam("fromDate") Long fromDate,
+            @RequestParam("toDate") Long toDate) throws Exception {
+        User user = JwtTokenUtils.parseToken(request);
+        return mealService.filterByDateAndTime(user.getId(), new Date(fromDate), new Date(toDate));
+    }
+
+    @RequestMapping(value = "group/users/self/meals", method = RequestMethod.GET)
+    @ResponseBody
+    @PreAuthorize("hasRole('USER')")
+    public List<DateCaloriesDto> getSumByDateAndTime(
+            HttpServletRequest request, @RequestParam("fromDate") Long fromDate,
+            @RequestParam("toDate") Long toDate) throws Exception {
+        User user = JwtTokenUtils.parseToken(request);
+        return mealService.getSumByDateAndTime(user.getId(), new Date(fromDate), new Date(toDate));
+    }
+
 
     @RequestMapping(value = "users/self/meals/{mealId}", method = RequestMethod.GET)
     @ResponseBody

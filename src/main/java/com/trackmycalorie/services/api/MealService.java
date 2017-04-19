@@ -2,8 +2,11 @@ package com.trackmycalorie.services.api;
 
 import com.trackmycalorie.dao.entity.Meal;
 import com.trackmycalorie.dao.entity.User;
+import com.trackmycalorie.services.dto.DateCaloriesDto;
 import com.trackmycalorie.services.dto.MealDto;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 public interface MealService {
@@ -16,4 +19,8 @@ public interface MealService {
     void deleteMeal(Meal meal);
 
     void updateMeal(Long mealId, MealDto mealDto);
+
+    List<Meal> filterByDateAndTime(Long userId, Date fromDate, Date toDate);
+
+    List<DateCaloriesDto> getSumByDateAndTime(Long id, Date fromDate, Date toDate) throws ParseException;
 }
