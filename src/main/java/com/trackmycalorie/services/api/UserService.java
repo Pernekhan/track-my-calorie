@@ -1,12 +1,11 @@
 package com.trackmycalorie.services.api;
 
-import com.sun.tools.javac.util.List;
 import com.trackmycalorie.dao.entity.User;
 import com.trackmycalorie.services.dto.RegisterUserDto;
 import com.trackmycalorie.services.dto.UserDto;
 
 public interface UserService {
-    List<User> getAllUsers();
+    java.util.List<User> getAllUsers();
 
     void createUser(RegisterUserDto userDto);
 

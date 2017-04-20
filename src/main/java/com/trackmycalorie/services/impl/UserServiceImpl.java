@@ -1,6 +1,5 @@
 package com.trackmycalorie.services.impl;
 
-import com.sun.tools.javac.util.List;
 import com.trackmycalorie.dao.api.UserDao;
 import com.trackmycalorie.dao.entity.Role;
 import com.trackmycalorie.dao.entity.User;
@@ -11,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return  userDao.getAll();
     }
 
     @Override
@@ -66,7 +68,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(Role.ROLE_MANAGER);
         user.setFullName(userDto.getFullName());
         userDao.create(user);

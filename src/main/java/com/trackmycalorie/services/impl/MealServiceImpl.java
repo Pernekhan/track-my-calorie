@@ -1,5 +1,6 @@
 package com.trackmycalorie.services.impl;
 
+import com.trackmycalorie.dao.api.MealDao;
 import com.trackmycalorie.dao.entity.Meal;
 import com.trackmycalorie.dao.entity.User;
 import com.trackmycalorie.dao.impl.MealDaoImpl;
@@ -19,7 +20,7 @@ import java.util.List;
 public class MealServiceImpl implements MealService {
 
     @Autowired
-    MealDaoImpl mealDao;
+    MealDao mealDao;
 
     @Override
     public List<Meal> getAll(Long userId) {
